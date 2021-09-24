@@ -17,13 +17,14 @@ export default function EmpresaCard(props){
 					/>
 					<Card.Divider/>
 					<Text style={{marginBottom: 10}}>{props.infoempresa.description}</Text>
-					<Button
-						icon={<Icon name='code' color='#ffffff' />}
-						buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-						onPress={() => props.navigation.navigate('Details', {
-						})}
-						title='Acceder' /> 
-			</Card>
+        <Button
+          icon={<Icon name='code' color='#ffffff' />}
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          onPress={() => props.navigation.navigate('Details', {
+            infoempresa: props.infoempresa
+          })}
+          title='Acceder' /> 
+        </Card>
 		</View>
 
  

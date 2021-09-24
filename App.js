@@ -1,6 +1,5 @@
-// In App.js in a new project
 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -28,18 +27,26 @@ function HomeScreen({ navigation }) {
     <ThemeProvider>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ScrollView>
-          <EmpresaCard infoempresa={empresa1} />
-          <EmpresaCard infoempresa={empresa2} />
+          <EmpresaCard infoempresa={empresa1} navigation={navigation} />
+          <EmpresaCard infoempresa={empresa2} navigation={navigation} />
         </ScrollView>
       </View>
     </ThemeProvider>
   );
 }
 
-function DetailsScreen({navigation}) {
+function DetailsScreen({navigation, route}) {
+  const { infoempresa } = route.params;
+
+  useEffect(() => {
+    // alert("hola");
+    // console.log(infoempresa);
+    navigation.setOptions({ title: infoempresa.name });
+  });
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+      <Text>hola</Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
