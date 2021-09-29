@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, FlatList, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Card, ListItem, Input, Button, ThemeProvider } from 'react-native-elements';
@@ -35,6 +35,49 @@ function HomeScreen({ navigation }) {
   );
 }
 
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Solicitud de citas',
+    icon: 'calendar-plus-o',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Historia Clinica',
+    icon: 'file-text',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Examenes',
+    icon: 'file-pdf-o',
+  },
+];
+
+const Item = ({ title, icon }) => (
+    <TouchableOpacity onPress={()=>alert("prueba")}>
+      <View style={styles.item}>
+        
+        <Text style={styles.title}><Icon name={icon} size={50} /> {title}</Text>
+      </View>
+    </TouchableOpacity>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 2,
+  },
+  title: {
+    fontSize: 30,
+  },
+});
+
 function DetailsScreen({navigation, route}) {
   const { infoempresa } = route.params;
 
@@ -44,9 +87,17 @@ function DetailsScreen({navigation, route}) {
     navigation.setOptions({ title: infoempresa.name });
   });
 
+  const renderItem = ({ item }) => (
+    <Item title={item.title} icon={item.icon} />
+  ); 
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>hola</Text>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />      
       <Button title="Go back" onPress={() => navigation.goBack()} />
     </View>
   );
