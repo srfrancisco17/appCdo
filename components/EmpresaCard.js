@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function EmpresaCard(props){
   return(
-
 		<View style={{ flex: 1,  flexDirection: "column" }} >
 			<Card>
 				<Card.Title>{props.infoempresa.name}</Card.Title>
@@ -20,13 +19,11 @@ export default function EmpresaCard(props){
         <Button
           icon={<Icon name='code' color='#ffffff' />}
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          onPress={() => props.navigation.navigate('Details', {
+          onPress={() => props.navigation.navigate('ListaServicios', {
             infoempresa: props.infoempresa
           })}
           title='Acceder' /> 
         </Card>
 		</View>
-
- 
   )
 }
