@@ -57,7 +57,7 @@ const list = [
   },
 ]
 
-function SolicitudCitas(){
+function SolicitudCitas({navigation}){
 	return(
 		<View>
       <SearchBar
@@ -69,7 +69,7 @@ function SolicitudCitas(){
 			list.map((item, i) => (
 				<TouchableOpacity 
 					key={i}
-					onPress={ ()=> alert("hola") }
+					onPress={ ()=> navigation.navigate('FormularioDatosPaciente') }
 				>
 					<ListItem bottomDivider>
 						<Icon
