@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
-import {  Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -47,13 +47,13 @@ function ListaServicios({navigation, route}) {
 	); 
 
 	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+		<View style={{ flex: 1 }}>
 			<FlatList
 				data={DATA}
 				renderItem={renderItem}
 				keyExtractor={item => item.id}
 			/>      
-			<Button title="Go back" onPress={() => navigation.goBack()} />
+			<Button title="Volver" onPress={() => navigation.goBack()} containerViewStyle={{width: '50%', height: 500}}/>
 		</View>
 	);
 }

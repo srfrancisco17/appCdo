@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { ListItem, Icon, SearchBar } from 'react-native-elements';
+import { ListItem, Icon, SearchBar, Button } from 'react-native-elements';
+
 
 const list = [
   {
@@ -57,34 +58,42 @@ const list = [
   },
 ]
 
-function SolicitudCitas({navigation}){
+const SolicitudCitas = ({navigation}) => {
+
 	return(
-		<View>
-      <SearchBar
-        placeholder="Type Here..."
-				lightTheme={true}
-      />
-			<ScrollView>
-			{
-			list.map((item, i) => (
-				<TouchableOpacity 
-					key={i}
-					onPress={ ()=> navigation.navigate('FormularioDatosPaciente') }
-				>
-					<ListItem bottomDivider>
-						<Icon
-							name={item.icon} 
-							type="font-awesome-5"
-						/>
-						<ListItem.Content>
-							<ListItem.Title>{item.title}</ListItem.Title>
-						</ListItem.Content>
-						<ListItem.Chevron />
-					</ListItem>
-				</TouchableOpacity>
-			))
-			}
-			</ScrollView>
+		<View style={{flex: 1, flexDirection: "column"}}>
+      <View style={{ flex: 1}}>
+        <SearchBar
+          placeholder="Buscar tipo de consulta..."
+          lightTheme={true}
+        />
+      </View>
+      <View style={{ flex: 7}}>
+        <ScrollView>
+        {
+        list.map((item, i) => (
+          <TouchableOpacity 
+            key={i}
+            onPress={ ()=> navigation.navigate('FormularioDatosPaciente') }
+          >
+            <ListItem bottomDivider>
+              <Icon
+                name={item.icon} 
+                type="font-awesome-5"
+              />
+              <ListItem.Content>
+                <ListItem.Title>{item.title}</ListItem.Title>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
+          </TouchableOpacity>
+        ))
+        }
+        </ScrollView>
+      </View>
+      <View style={{ flex: 1, marginTop:10}}>
+        <Button title="Volver" onPress={() => navigation.goBack()} containerViewStyle={{width: '100%'}}/>
+      </View>
 		</View>
 	);
 }
